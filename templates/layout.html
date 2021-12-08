@@ -7,6 +7,21 @@
     <title>Free Market: {% block title %}{% endblock %}</title>
 </head>
 <body>
+    <nav>
+        <a href="/">logo</a>
+
+        {% if not session.userId %}
+        <ul>
+            <li><a href="/login">Log in</a></li>
+            <li><a href="/register">Resgister</a></li>
+        </ul>
+        {% else %}
+        <ul>
+            <li><a href="/post">Post</a></li>
+            <li><a href="/account">Account</a></li>
+        </ul>
+        {% endif %}
+    </nav>
     <main>
         {% block main %}{% endblock %}
     </main>

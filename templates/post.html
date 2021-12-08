@@ -1,0 +1,15 @@
+{% extends "layout.html" %}
+{% block title %} 
+    Post
+{% endblock %}
+
+{% block main %} 
+    <h1>Post</h1>
+    <form action="/post" method=post enctype=multipart/form-data>
+        <input type="file" name="file">
+        <input type="text" name="title" placeholder="Title">
+        <input type="text" name="description" placeholder="Description">
+        <input type="number" name="price" placeholder="Price">
+        <input type="submit" value="Post">
+    </form>
+{% endblock %}
