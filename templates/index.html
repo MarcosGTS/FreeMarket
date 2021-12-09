@@ -3,17 +3,13 @@
     home
 {% endblock %}
 {% block main %} 
-    <h1>Index page</h1>
-    <p>Welcome, {{username}} !</p>
-
-    <form action="/" method="post">
-        <input type="submit" name="logout" value="Logout">
-    </form>
-
     {% for post in posts %}
         <div>
-            <img src="static/img/{{post[0:2]|join('.')}}" alt="">
-            <p>{{post}}</p>
+            <img src="static/img/{{[post.id, post.extension]|join('.')}}" alt="">
+            <div>
+                <p>{{post.title}}</p>
+                <p>{{post.price}}</p>
+            </div>
         </div>
     {% endfor %}
 {% endblock %}
