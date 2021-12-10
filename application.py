@@ -160,7 +160,6 @@ def logout():
     session.clear()
     return redirect("/")
 
-
 @app.route("/account", methods=["GET", "POST"])
 @login_required
 def account():
@@ -204,6 +203,20 @@ def account():
         cnn.commit()
 
     return render_template("account.html", username=user["username"])
+
+@app.route("/more/<id>")
+def more(id):
+    cnn = sqlite3.connect(DATABASE_NAME)
+    cnn.row_factory = sqlite3.Row
+    cursor = cnn.cursor()
+
+    sql = "SELECT * FROM posts JOIN users ON users.id = userId WHERE posts.id = ?"
+    post = cursor.execute(sql, [id]).fetchone()
+    
+    filename = f"img/{post['id']}.{post['extension']}"
+    filepath = url_for('static', filename=filename)
+
+    return render_template("more.html", post=post, filepath=filepath);
 
 @app.route("/error/<message>")
 def error(message):

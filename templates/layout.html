@@ -5,26 +5,40 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Free Market: {% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="static/style.css">
 </head>
 <body>
-    <nav>
-        <a href="/">logo</a>
-
-        {% if not session.userId %}
+    <nav class="navbar">
+        <a class="brand-title" href="/">logo</a>
         <ul>
+            <li><a href="/">Home</a></li>
+        {% if not session.userId %}
+       
             <li><a href="/login">Log in</a></li>
             <li><a href="/register">Resgister</a></li>
-        </ul>
+   
         {% else %}
-        <ul>
+   
             <li><a href="/post">My-posts</a></li>
             <li><a href="/account">Account</a></li>
             <li><a href="/logout">Logout</a></li>
-        </ul>
+        
         {% endif %}
+        </ul>
     </nav>
     <main>
         {% block main %}{% endblock %}
     </main>
+
+    <script>
+        let posts = document.querySelectorAll(".post");
+
+        posts.forEach(p => p.addEventListener("click", () => {
+            id = p.childNodes[1].value
+            window.location.href = `/more/${id}`
+        }))    
+    </script>
+
+    {% block script %}{% endblock %}
 </body>
 </html>

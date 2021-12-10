@@ -1,15 +1,55 @@
 {% extends "layout.html" %}
+
 {% block title %} 
     home
 {% endblock %}
+
 {% block main %} 
-    {% for post in posts %}
-        <div>
-            <img src="static/img/{{[post.id, post.extension]|join('.')}}" alt="">
-            <div>
-                <p>{{post.title}}</p>
-                <p>{{post.price}}</p>
+    <input type="text" class="search">
+    <section class="list">
+        {% for post in posts %}
+            <div class="post">
+                <input type="hidden" value="{{post.id}}">
+                <img src="static/img/{{[post.id, post.extension]|join('.')}}" alt="">
+                <div>
+                    <p class="title">{{post.title}}</p>
+                    <p class="price">{{post.price}}</p>
+                </div>
             </div>
-        </div>
-    {% endfor %}
+        {% endfor %}
+    </section>
+    
+{% endblock %}
+
+{% block script %} 
+    <script>
+
+        const searchBar = document.querySelector(".search");
+
+        // Is already declared on layout.html
+        posts = document.querySelectorAll(".post");
+        
+        searchBar.addEventListener("keyup", () => {
+            
+            const list = document.querySelector(".list");
+            const search = normalizeStr(searchBar.value)
+
+            if (search == "") 
+                posts.forEach(p => list.appendChild(p))
+            
+            // Ereasing all posts
+            list.innerHTML = ""
+
+            posts.forEach( p => {
+                let title = p.querySelector(".title").innerText 
+                title = normalizeStr(title)
+                // Adding elements with match
+                if (title.indexOf(search) > 0) list.appendChild(p)
+            })
+        })
+
+        function normalizeStr (str) {
+            return str.trim().toLowerCase()
+        }
+    </script>
 {% endblock %}

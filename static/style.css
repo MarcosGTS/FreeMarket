@@ -1,0 +1,34 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+
+    align-items: center;
+    background-color: forestgreen;
+
+    font-size: 21px;
+
+    line-height: 0;;
+}
+
+.navbar a {
+    color: whitesmoke;
+    text-decoration: none;
+    padding: 2rem 1rem;
+    display: block;
+}
+
+.navbar ul {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.navbar li:hover {
+    background-color: green;
+}
