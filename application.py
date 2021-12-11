@@ -202,7 +202,7 @@ def account():
         #Saving
         cnn.commit()
 
-    return render_template("account.html", username=user["username"])
+    return render_template("/account.html", username=user["username"])
 
 @app.route("/more/<id>")
 def more(id):
@@ -216,8 +216,8 @@ def more(id):
     filename = f"img/{post['id']}.{post['extension']}"
     filepath = url_for('static', filename=filename)
 
-    return render_template("more.html", post=post, filepath=filepath);
+    return render_template("/more.html", post=post, filepath=filepath);
 
 @app.route("/error/<message>")
 def error(message):
-    return render_template("error.html", error=message)
+    return render_template("/error.html", error=message)

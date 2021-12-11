@@ -5,19 +5,28 @@
 {% endblock %}
 
 {% block main %} 
-    <input type="text" class="search">
-    <section class="list">
-        {% for post in posts %}
-            <div class="post">
-                <input type="hidden" value="{{post.id}}">
-                <img src="static/img/{{[post.id, post.extension]|join('.')}}" alt="">
-                <div>
-                    <p class="title">{{post.title}}</p>
-                    <p class="price">{{post.price}}</p>
+
+    <div class="container">
+        <div class="home-head">
+            <h1>Discorver</h1>
+            <input type="text" class="search" autocomplete="off" placeholder="Search">
+                   
+        </div>
+        <section class="list">  
+            {% for post in posts %}
+                <div class="post">
+                    <input type="hidden" value="{{post.id}}">
+                    <div class="frame">
+                        <img src="static/img/{{[post.id, post.extension]|join('.')}}" alt="">
+                    </div>
+                    <div class="post-info">
+                        <p class="title">{{post.title}}</p>
+                        <p class="price">{{post.price}}</p>
+                    </div>
                 </div>
-            </div>
-        {% endfor %}
-    </section>
+            {% endfor %}
+        </section>
+    </div> 
     
 {% endblock %}
 
@@ -34,8 +43,11 @@
             const list = document.querySelector(".list");
             const search = normalizeStr(searchBar.value)
 
-            if (search == "") 
+            if (search == "") {
                 posts.forEach(p => list.appendChild(p))
+                return;
+            }
+                
             
             // Ereasing all posts
             list.innerHTML = ""
@@ -44,12 +56,12 @@
                 let title = p.querySelector(".title").innerText 
                 title = normalizeStr(title)
                 // Adding elements with match
-                if (title.indexOf(search) > 0) list.appendChild(p)
+                if (title.indexOf(search) >= 0) list.appendChild(p)
             })
         })
 
         function normalizeStr (str) {
-            return str.trim().toLowerCase()
+            return str.toLowerCase().trim()
         }
     </script>
 {% endblock %}

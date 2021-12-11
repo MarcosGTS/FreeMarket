@@ -5,6 +5,13 @@
 {% endblock %}
 
 {% block main %}
-    <h1>A error was Ocurrend</h1>
-    <p>{{error}}</p>
+    <div class="error">
+        <h1>A error was Ocurrend :(</h1>
+        <p>Sorry for this!</p>
+        <p>Error: {{error}}</p>
+        <a href="/">
+            <div class="home-button">Home</div>
+        </a>
+    </div>
+    
 {% endblock %} 

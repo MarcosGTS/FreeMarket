@@ -4,9 +4,10 @@
 {% endblock %}
 
 {% block main %} 
-    <form action="/login" method="post">
+    <form class="form" action="/login" method="post">
+        <h1>Login</h1>
         <input type="text" autocomplete="off" autofocus name="username" placeholder="Username">
         <input type="password" name="password" placeholder="Password">
-        <input type="submit" name="confirm" value="login">
+        <button type="submit" name="confirm">Log In</button>
     </form>
 {% endblock %}
