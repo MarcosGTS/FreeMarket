@@ -4,28 +4,50 @@
 {% endblock %}
 
 {% block main %} 
-    <h1>Post</h1>
-    <form action="/post" method=post enctype=multipart/form-data>
-        <input type="file" name="file">
-        <input type="text" name="title" placeholder="Title">
-        <input type="text" name="description" placeholder="Description">
-        <input type="number" name="price" placeholder="Price">
-        <input type="submit" value="Post">
-    </form>
-
-    {% for post in posts%}
-    <div class="post">
-        <div class="frame">
-            <img src="static/img/{{[post.id, post.extension]|join('.')}}" alt="">
-        </div>
-        <div class="post-info">
-            <p>{{post.title}}</p>
-            <p>{{post.price}}</p>
-            <form action="/remove_post" method="post">
-                <input type="hidden" name="id" value="{{post.id}}">
-                <button type="submit">Remove</button>
+    <div class="container">
+        <h1>Post</h1>
+        <div class="new-post">
+            <button>New Post</button>
+            <form class="post-form hidden" action="/post" method=post enctype=multipart/form-data>
+                <input type="file" name="file">
+                <div>
+                    <input type="text" name="title" placeholder="Title">
+                    <input class="price" type="number" name="price" placeholder="Price">
+                </div>
+                <textarea name="description" placeholder="Description" cols="30" rows="10"></textarea> 
+                <button type="submit">Post</button>
             </form>
         </div>
+
+        <div class="list">
+            {% for post in posts%}
+            
+            <div class="post">
+                <input type="hidden" value="{{post.id}}">
+                <div class="frame">
+                    <img src="static/img/{{[post.id, post.extension]|join('.')}}" alt="">
+                </div>
+                <div class="post-info">
+                    <p>{{post.title}}</p>
+                    <p>U$ {{post.price}}</p>
+                    <form  action="/remove_post" method="post">
+                        <input type="hidden" name="id" value="{{post.id}}">
+                        <button class="post-remove" type="submit">Remove</button>
+                    </form>
+                </div>
+            </div>
+            
+            {% endfor %}
+        </div>
     </div>
-    {% endfor %}
+    
+{% endblock %}
+
+{% block script %}
+    <script>
+        document.querySelector(".new-post button").addEventListener("click", () => {
+            const form = document.querySelector(".post-form");
+            form.classList.toggle("hidden");
+        })
+    </script>
 {% endblock %}

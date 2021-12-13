@@ -5,18 +5,25 @@
 {% endblock %}
 
 {% block main %}
-    <div>
-        <div>
-            <img src="{{filepath}}" alt="">
+    <div class="container margin">
+        <div class="more-header">
+            <h1>{{post.title}}</h1>
+            <h4>U$ {{post.price}}</h4>
         </div>
-        <div>
-            <h2>{{post.title}}</h2>
-            <h4>{{post.price}}</h4>
+        <div class="more-page">
+            <div class="more-frame">
+                <img src="{{filepath}}" alt="">
+            </div>  
+            <div class="more-info">
+                <h2>By {{post.username}}</h2>
+
+                <div>
+                    <h3>Description</h3>
+                    <p>{{post.description}}</p>
+                </div>    
+            </div>
         </div>
-    </div>
-    <div>
-        <h2>{{post.username}}</h2>
-        <p>{{post.description}}</p>
-    </div>
+        
+    </div> 
 {% endblock%}
 

@@ -9,8 +9,8 @@
 </head>
 <body>
     <nav class="navbar">
-        <a class="brand-title" href="/">logo</a>
-        <ul>
+        <a class="brand-title" href="/">FREE MARKET</a> 
+        <ul class="options hidden">
             <li><a href="/">Home</a></li>
         {% if not session.userId %}
        
@@ -25,6 +25,11 @@
         
         {% endif %}
         </ul>
+        <div class="burger-button">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
     </nav>
     <main>
         {% block main %}{% endblock %}
@@ -37,6 +42,11 @@
             id = p.childNodes[1].value
             window.location.href = `/more/${id}`
         }))    
+
+        document.querySelector(".burger-button").addEventListener("click", () => { 
+            const list = document.querySelector(".options")
+            list.classList.toggle("hidden")
+        })
     </script>
 
     {% block script %}{% endblock %}
