@@ -1,5 +1,4 @@
 # FreeMarket
-#### Video Demo: https://youtu.be/QSB6-QtohV4
 #### Description:
 This project is a generic clone of sites like: Amazon, olx, ebay and several other marketplaces.
  
